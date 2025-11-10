@@ -1,0 +1,162 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor Binario / Decimal</title>
+
+    <style>
+        /*fonde*/
+        body{
+            background-image: url(descarga.jpeg);
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* caja para foto */
+        .foto{
+            width: 90px;
+            height: 90px;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 12px rgba(0,0,0,0.6);
+        }
+
+        .foto img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /*caja c*/
+        .contenedor{
+            background:rgb(96, 124, 87);
+            padding: 45px;
+            border-radius: 20px;
+            text-align: center;
+            width: 380px;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 0 25px rgba(0,0,0,0.5);
+            animation: aparecer .7s ease;
+        }
+
+        @keyframes aparecer{
+            from{opacity: 0; transform: scale(0.9);}
+        }
+
+        h2{
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-size: 26px;
+        }
+
+        button{
+            width: 85%;
+            margin: 10px;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            background:rgb(250, 235, 241);
+            cursor: pointer;
+            font-size: 17px;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        /*sombre del coler*/
+        button:hover{
+            background: hsl(0, 0%, 100%);
+            transform: scale(1.05);
+            color: black;
+        }
+
+        #resultado{
+            margin-top: 25px;
+            font-size: 18px;
+        }
+
+        footer{
+            color: #ffffff;
+            margin-top: 35px;
+            font-size: 14px;
+            opacity: 0.85;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- foto arriba izquierda -->
+<div class="foto">
+    <img src="logo cetis112.png">
+</div>
+
+<div class="contenedor">
+    <h2>Conversor Numérico</h2>
+
+    <button onclick="decimalABinario()">Decimal → Binario</button>
+    <button onclick="binarioADecimal()">Binario → Decimal</button>
+
+    <div id="resultado"></div>
+
+    <footer>
+        <hr>
+        Proyecto Hecho Por : <br>
+        Cen Qui Demi Alesi <br>
+         Pérez Echeverría Héctor Miguel
+    </footer>
+</div>
+
+<script>
+
+function limpiarPantalla()
+{
+    document.getElementById("resultado").innerHTML = "";
+}
+
+function decimalABinario() 
+{
+    limpiarPantalla();
+    let decimal = prompt("Ingresa un número decimal:");
+
+    if( isNaN(decimal) || decimal.trim()=="" )
+    {
+        document.getElementById("resultado").innerHTML =
+            `<b>ERROR:</b> Debes ingresar un número decimal válido.`;
+        return;
+    }
+
+    let binario = Number(decimal).toString(2);
+
+    document.getElementById("resultado").innerHTML = 
+        `El número decimal <b>${decimal}</b> se transformó a binario: <b>${binario}</b>`;
+}
+
+function binarioADecimal() 
+{
+    limpiarPantalla();
+    let bin = prompt("Ingresa un número binario:");
+    let soloBinario = /^[0-1]+$/;
+
+    if(!soloBinario.test(bin))
+    {
+        document.getElementById("resultado").innerHTML =
+            `<b>ERROR:</b> Solo se permiten números binarios (0 y 1).`;
+        return;
+    }
+
+    let decimal = parseInt(bin, 2);
+
+    document.getElementById("resultado").innerHTML = 
+        `El número binario <b>${bin}</b> se transformó a decimal: <b>${decimal}</b>`;
+}
+
+</script>
+
+</body>
+</html>
